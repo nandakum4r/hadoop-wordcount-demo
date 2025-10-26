@@ -1,4 +1,5 @@
--version: '3.8'
+version: '3.3'
+
 services:
 
   namenode:
@@ -7,7 +8,7 @@ services:
     ports:
       - "9870:9870"
     environment:
-      - CLUSTER_NAME=test
+      CLUSTER_NAME: test
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
 
@@ -15,7 +16,7 @@ services:
     image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
     container_name: datanode
     environment:
-      - NAMENODE_URI=hdfs://namenode:9000
+      NAMENODE_URI: hdfs://namenode:9000
     volumes:
       - hadoop_datanode:/hadoop/dfs/data
     depends_on:
@@ -25,12 +26,12 @@ services:
     build: ./app
     container_name: flask-app
     ports:
-      - "5003:5003"
+      - "5000:5000"
     depends_on:
       - namenode
       - datanode
     environment:
-      - HADOOP_HOME=/opt/hadoop
+      HADOOP_HOME: /opt/hadoop
     command: python3 app.py
 
 volumes:

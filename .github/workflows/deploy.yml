@@ -1,0 +1,62 @@
+name: Auto Deploy to Azure VM
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Azure VM via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: http://57.158.26.54:5000
+          username: azureuser
+          key: -----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----
+          script: |
+            cd /home/hadoop-wordcount-demo
+            git pull origin main
+            docker-compose down
+            docker-compose up -d --build

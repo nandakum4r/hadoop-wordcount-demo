@@ -18,7 +18,7 @@ jobs:
           username: ${{secrets.USER}}
           key: ${{secrets.KEY}}
           script: |
-            cd /hadoop-wordcount-demo
+            cd /home/azureuser/hadoop-wordcount-demo
             git pull origin main
             docker-compose down
             docker-compose up -d --build
